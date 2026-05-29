@@ -84,3 +84,18 @@ export const getQuizById = async (req: Request, res: Response) => {
 		res.status(500).json({ error: "quiz by id error" });
 	}
 };
+
+export const deleteQuiz = async (req: Request, res: Response) => {
+	try {
+		const { id } = req.params;
+
+		await prisma.quiz.delete({
+			where: { id: Number(id) },
+		});
+
+		res.json({ message: "quiz has deleted" });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: "delete quiz error" });
+	}
+};
