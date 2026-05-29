@@ -36,3 +36,29 @@ export const createQuiz = async (req: Request, res: Response) => {
 		res.status(500).json({ error: "cant' create quiz" });
 	}
 };
+
+export const getAllQuizzes = async (req: Request, res: Response) => {
+	try {
+		const quizzes = await prisma.quiz.findMany({
+			select: {
+				id: true,
+				title: true,
+				_count: {
+					select: { questions: true },
+				},
+			},
+			orderBy: { createdAt: "desc" },
+		});
+
+		const formattedQuizzes = quizzes.map((q) => ({
+			id: q.id,
+			title: q.title,
+			questionsCount: q._count.questions,
+		}));
+
+		res.json(formattedQuizzes);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: "get all quiz error" });
+	}
+};
