@@ -64,14 +64,25 @@ export default function CreateQuizPage() {
   };
 
   return (
-    <div className="p-5">
-      <Link href="/quizzes"> back to list</Link>
-      <h1>create quiz</h1>
+    <div className="max-w-3xl mx-auto py-10 px-4">
+      <Link
+        href="/quizzes"
+        className="inline-block mb-6 text-(--color-primary) hover:underline"
+      >
+        {" "}
+        back
+      </Link>
+      <h1 className="text-3xl sm:text-4xl font-black tracking-tight mb-6">
+        Сreate quiz
+      </h1>
 
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 border border-(--color-border) rounded-xl p-6 bg-white shadow-sm"
+      >
         <div className="mb-5">
-          <label>
-            <span className="font-bold">quiz title</span>{" "}
+          <label className="block mb-2 font-semibold text-(--color-dark)">
+            Quiz title
           </label>
           <input
             type="text"
@@ -79,10 +90,13 @@ export default function CreateQuizPage() {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="write your quiz title"
             required
+            className="w-full border border-(--color-border) rounded-lg px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-(--color-primary)"
           />
         </div>
 
-        <h2 className="mb-5">questions list ({questions.length})</h2>
+        <h2 className="text-xl font-semibold mb-4 text-(--color-dark)">
+          Questions ({questions.length})
+        </h2>
         {questions.map((q, index) => (
           <QuestionFormItem
             key={index}
@@ -96,13 +110,16 @@ export default function CreateQuizPage() {
         <button
           type="button"
           onClick={addQuestion}
-          className="bg-green-400 p-2 my-2 block cursor-pointer"
+          className="w-full bg-green-500 text-white py-2 rounded-lg font-medium hover:bg-green-600 transition"
         >
-          + add question
+          + Add question
         </button>
 
-        <button type="submit" className="bg-amber-200 p-2 cursor-pointer">
-          save quiz
+        <button
+          type="submit"
+          className="w-full bg-(--color-primary) text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+        >
+          Save quiz
         </button>
       </form>
     </div>
