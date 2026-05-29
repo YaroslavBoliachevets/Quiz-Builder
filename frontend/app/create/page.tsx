@@ -90,7 +90,7 @@ export default function CreateQuizPage() {
             onChange={(e) => setTitle(e.target.value)}
             placeholder="write your quiz title"
             required
-            className="w-full border border-(--color-border) rounded-lg px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-(--color-primary)"
+            className="w-full border border-(--color-border) rounded-lg px-4 py-2 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-(--color-primary) text-(--color-dark)"
           />
         </div>
 

@@ -80,7 +80,9 @@ export default function QuestionFormItem({
   return (
     <div className="mb-6 border border-(--color-border) rounded-lg p-5 bg-white shadow-sm">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-xl font-semibold">Question {index + 1}</h3>
+        <h3 className="text-xl font-semibold text-(--color-dark)">
+          Question {index + 1}
+        </h3>
         <button
           type="button"
           onClick={onRemove}
@@ -92,15 +94,23 @@ export default function QuestionFormItem({
 
       {/* Question type */}
       <div className="mb-4">
-        <label className="block mb-1 font-medium">question type: </label>
+        <label className="block mb-1 font-medium text-(--color-dark)">
+          question type:{" "}
+        </label>
         <select
           value={question.type}
           onChange={(e) => handleTypeChange(e.target.value as any)}
-          className="border border-(--color-border) rounded px-3 py-2 bg-white"
+          className="border border-(--color-border) rounded px-3 py-2 bg-white text-(--color-dark)"
         >
-          <option value="BOOLEAN">Boolean (True/False)</option>
-          <option value="INPUT">Input (Short text)</option>
-          <option value="CHECKBOX">Checkbox (Multiple choice)</option>
+          <option value="BOOLEAN" className="text-(--color-dark)">
+            Boolean (True/False)
+          </option>
+          <option value="INPUT" className="text-(--color-dark)">
+            Input (Short text)
+          </option>
+          <option value="CHECKBOX" className="text-(--color-dark)">
+            Checkbox (Multiple choice)
+          </option>
         </select>
       </div>
 
@@ -109,10 +119,15 @@ export default function QuestionFormItem({
         {/* BOOLEAN */}
         {question.type === "BOOLEAN" && (
           <div>
-            <p className="mb-2 font-medium">select correct answer:</p>
+            <p className="mb-2 font-medium text-(--color-dark)">
+              select correct answer:
+            </p>
             <div className="flex gap-4">
               {question.options.map((opt) => (
-                <label key={opt} className="flex items-center gap-2">
+                <label
+                  key={opt}
+                  className="flex items-center gap-2 text-(--color-dark)"
+                >
                   <input
                     type="radio"
                     name={`boolean-correct-${index}`}
@@ -129,7 +144,7 @@ export default function QuestionFormItem({
         {/* INPUT */}
         {question.type === "INPUT" && (
           <div>
-            <label className="block mb-1 font-medium">
+            <label className="block mb-1 font-medium text-(--color-dark)">
               write exact correct word/phrase:{" "}
             </label>
             <input
@@ -138,7 +153,7 @@ export default function QuestionFormItem({
               onChange={(e) => handleSimpleCorrectChange(e.target.value)}
               placeholder="wrigth correct answer"
               required
-              className="border border-(--color-border) rounded px-3 py-2 w-full bg-white"
+              className="border border-(--color-border) rounded px-3 py-2 w-full bg-white text-(--color-dark)"
             />
           </div>
         )}
@@ -146,7 +161,9 @@ export default function QuestionFormItem({
         {/*  CHECKBOX */}
         {question.type === "CHECKBOX" && (
           <div>
-            <p className="mb-2 font-medium">Options (check correct ones):</p>
+            <p className="mb-2 font-medium text-(--color-dark)">
+              Options (check correct ones):
+            </p>
             {question.options.map((opt, optIndex) => (
               <div key={optIndex} className="flex items-center gap-2">
                 <input
@@ -160,7 +177,7 @@ export default function QuestionFormItem({
                   onChange={(e) =>
                     updateCheckboxOptionText(optIndex, e.target.value)
                   }
-                  className="border border-(--color-border) rounded px-2 py-1 bg-white flex-1"
+                  className="border border-(--color-border) rounded px-2 py-1 bg-white flex-1 text-(--color-dark)"
                   required
                 />
               </div>
@@ -168,7 +185,7 @@ export default function QuestionFormItem({
             <button
               type="button"
               onClick={addCheckboxOption}
-              className="mt-3 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
+              className="mt-3 px-3 py-1 bg-gray-200 rounded hover:bg-gray-300 text-(--color-dark)"
             >
               + Add option
             </button>
@@ -178,13 +195,15 @@ export default function QuestionFormItem({
       {/*  */}
 
       <div>
-        <label className="block mb-1 font-medium">Question body: </label>
+        <label className="block mb-1 font-medium text-(--color-dark)">
+          Question body:{" "}
+        </label>
         <input
           type="text"
           value={question.text}
           onChange={(e) => handleTextChange(e.target.value)}
           placeholder="write your question"
-          className="border border-(--color-border) rounded px-3 py-2 w-full bg-white"
+          className="border border-(--color-border) rounded px-3 py-2 w-full bg-white text-(--color-dark)"
           required
         />
       </div>

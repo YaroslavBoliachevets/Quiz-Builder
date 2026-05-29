@@ -42,4 +42,13 @@ export const quizService = {
     if (!res.ok) throw new Error("error create quiz");
     return res.json();
   },
+
+  async delete(id: number): Promise<{ message: string }> {
+    const res = await fetch(`${API_URL}/quizzes/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
+    if (!res.ok) throw new Error("Failed to delete quiz");
+    return res.json();
+  },
 };
