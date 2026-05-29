@@ -29,4 +29,17 @@ export const quizService = {
 		if (!res.ok) throw new Error("front error fetch by id");
 		return res.json();
 	},
+
+	async createQuiz(quizData: {
+		title: string;
+		questions: Omit<Question, "id">[];
+	}): Promise<Quiz> {
+		const res = await fetch(`${API_URL}/quizzes`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(quizData),
+		});
+		if (!res.ok) throw new Error("error create quiz");
+		return res.json();
+	},
 };
