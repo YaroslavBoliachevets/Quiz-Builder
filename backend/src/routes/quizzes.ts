@@ -1,10 +1,10 @@
 import express from "express";
 import prisma from "../prisma.js";
 import {
-	createQuiz,
-	getAllQuizzes,
-	getQuizById,
-	deleteQuiz,
+  createQuiz,
+  getAllQuizzes,
+  getQuizById,
+  deleteQuiz,
 } from "../controllers/quizzes.js";
 
 const router = express.Router();
