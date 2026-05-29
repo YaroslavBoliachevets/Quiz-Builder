@@ -62,3 +62,25 @@ export const getAllQuizzes = async (req: Request, res: Response) => {
 		res.status(500).json({ error: "get all quiz error" });
 	}
 };
+
+export const getQuizById = async (req: Request, res: Response) => {
+	try {
+		const { id } = req.params;
+
+		const quiz = await prisma.quiz.findUnique({
+			where: { id: Number(id) },
+			include: {
+				questions: true,
+			},
+		});
+
+		if (!quiz) {
+			return res.status(404).json({ error: "quiz not found" });
+		}
+
+		res.json(quiz);
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: "quiz by id error" });
+	}
+};
