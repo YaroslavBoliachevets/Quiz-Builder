@@ -1,3 +1,4 @@
+import { getQuizById } from "./../../backend/src/controllers/quizzes";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
 export interface Question {
@@ -20,6 +21,12 @@ export const quizService = {
 	async getAll(): Promise<Quiz[]> {
 		const res = await fetch(`${API_URL}/quizzes`, { cache: "no-store" });
 		if (!res.ok) throw new Error("front error fech all");
+		return res.json();
+	},
+
+	async getQuizById(id: string): Promise<Quiz> {
+		const res = await fetch(`${API_URL}/quizzes/${id}`, { cache: "no-store" });
+		if (!res.ok) throw new Error("front error fetch by id");
 		return res.json();
 	},
 };
