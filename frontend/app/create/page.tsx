@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { quizService, Question } from "@/services/api";
 
+import QuestionFormItem from "./QuestionFormItem";
+
 export default function CreateQuizPage() {
 	const router = useRouter();
 
@@ -46,6 +48,15 @@ export default function CreateQuizPage() {
 		setQuestions(questions.filter((question, index) => index !== removeIndex));
 	};
 
+	const handleUpdateQuestion = (
+		indexToUpdate: number,
+		updatedQuestion: Omit<Question, "id">,
+	) => {
+		const updated = [...questions];
+		updated[indexToUpdate] = updatedQuestion;
+		setQuestions(updated);
+	};
+
 	const handleQuestionTextChange = (index: number, newText: string) => {
 		const updatedQuestions = [...questions];
 		updatedQuestions[index].text = newText;
@@ -72,49 +83,20 @@ export default function CreateQuizPage() {
 				</div>
 
 				<h2 className="mb-5">questions list ({questions.length})</h2>
-
 				{questions.map((q, index) => (
-					<div key={index} className="mb-5 border-amber-300 border-1 p-5">
-						<div
-							style={{
-								display: "flex",
-								justifyContent: "space-between",
-								alignItems: "center",
-							}}
-						>
-							<h3>Question №{index + 1}</h3>
-							<button
-								type="button"
-								onClick={() => removeQuestion(index)}
-								className="text-rose-800 cursor-pointer"
-							>
-								remove
-							</button>
-						</div>
-
-						<div style={{ marginTop: "10px" }}>
-							<label>question body: </label>
-							<input
-								type="text"
-								value={q.text}
-								onChange={(e) => handleQuestionTextChange(index, e.target.value)}
-								placeholder="write your question"
-								className="w-[80%]"
-								required
-							/>
-						</div>
-					</div>
+					<QuestionFormItem
+						key={index}
+						index={index}
+						question={q}
+						onRemove={() => removeQuestion(index)}
+						onUpdate={(updatedData) => handleUpdateQuestion(index, updatedData)}
+					/>
 				))}
 
 				<button
 					type="button"
 					onClick={addQuestion}
-					style={{
-						background: "lightgreen",
-						padding: "10px",
-						margin: "20px 0",
-						display: "block",
-					}}
+					className="bg-green-400 p-2 my-2 block cursor-pointer"
 				>
 					+ add question
 				</button>
