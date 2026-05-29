@@ -1,0 +1,25 @@
+{
+	"name": "quiz-builder",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev:backend": "npm run dev --prefix backend",
+		"dev:frontend": "npm run dev --prefix frontend",
+		"dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/YaroslavBoliachevets/Quiz-Builder.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/YaroslavBoliachevets/Quiz-Builder/issues"
+	},
+	"homepage": "https://github.com/YaroslavBoliachevets/Quiz-Builder#readme",
+	"devDependencies": {
+		"concurrently": "^10.0.0"
+	}
+}
